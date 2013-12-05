@@ -35,6 +35,10 @@ private:
    */
    static void deleteAllNodes(TTNode* currRoot);
 
+   /*
+   * Traverse the trie to get the cumulative depth of the trie nodes
+   */
+   static void getAllDepths(TTNode* curr, uint* &cumDepth);
 
    /*
    * --------------------------------------------------------------------------
@@ -89,6 +93,12 @@ public:
    * Get the wordSize of the trie (number of words)
    */
    int getWordSize() const;
+
+   /*
+   * Returns the average depth of the nodes in the trie. If root=0, then it
+   * returns 0 as avg depth
+   */
+   double getAverageDepth() const;
 
    /*
    * The destructor for ternary trie

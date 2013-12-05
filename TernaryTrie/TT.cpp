@@ -35,6 +35,14 @@ void TT::deleteAllNodes(TTNode* currRoot){
    }
 }
 
+void TT::getAllDepths(TTNode* curr, uint* &cumDepth){
+   if (curr) {
+      getAllDepths(curr->left, cumDepth);
+      getAllDepths(curr->right, cumDepth);
+      getAllDepths(curr->middle, cumDepth);
+      (*cumDepth) += curr->depth;
+   }
+}
 
 
 /*
@@ -189,6 +197,15 @@ int TT::getNodeSize() const {
 
 int TT::getWordSize() const {
    return wordSize;
+}
+
+double TT::getAverageDepth() const {
+   if (!root)
+      return 0;
+   uint cumDepth = 0;
+   uint* cumDepthPtr = &cumDepth;
+   getAllDepths(root, cumDepthPtr);
+   return ((double) cumDepth) / nodeSize;
 }
 
 TT::~TT() {

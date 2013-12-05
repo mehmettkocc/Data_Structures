@@ -30,13 +30,15 @@ public:
    TTNode* middle;
    //flag to indicate if the node is the last letter of a word in the lexicon
    bool end;
+   //depth of the node
+   uint depth;
 
    /*
    * The constructor for TTNode
    * All public fields are set in the constructor
    */
-   TTNode(byte d, TTNode* L, TTNode* R, TTNode* M, bool e) :
-      data(d), left(L), right(R), middle(M), end(e) {}
+   TTNode(byte d, TTNode* L, TTNode* R, TTNode* M, bool e, uint dep) :
+      data(d), left(L), right(R), middle(M), end(e), depth(dep) {}
 };
 
 #endif //TTNODE_H
