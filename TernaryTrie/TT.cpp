@@ -75,6 +75,43 @@ bool TT::find(const string& word) const {
    return false;
 }
 
+pair<bool, bool> TT::findPrefix(const TTNode* startNode, const string& subWord,
+   TTNode* &nextNode) const {
+      int bitCount = 0, totalCount = subWord.length();
+      char currChar = subWord[0];
+      //start from 'sNode' and search until a null TTNode is reached
+      while (startNode) {
+         //if LESS
+         if (currChar < startNode->data)
+            startNode = startNode->left;
+         //if GREATER
+         else if (startNode->data < currChar)
+            startNode = startNode->right;
+         //if EQUAL
+         else {
+            bitCount++;
+            if (bitCount == totalCount) {
+               //check the end bit
+               if (startNode->end) {
+                  //prefix found and also a word
+                  nextNode = startNode->middle;
+                  return pair<bool, bool> (true, true);
+               }
+               else {
+                  //prefix found, but not a word
+                  nextNode = startNode->middle;
+                  return pair<bool, bool> (true, false);
+               }
+            }
+            startNode = startNode->middle;
+            currChar = subWord[bitCount];
+         }
+      }
+      //a null node is reached -> NOT FOUND
+      nextNode = 0;
+      return pair<bool, bool> (false, false);
+}
+
 bool TT::insert(const string& word) {
    int bitCount = 0, totalCount = word.length();
    char currChar = word[0];
@@ -139,6 +176,11 @@ void TT::clearTrie() {
    root = 0;
    //everything in the trie is deleted
    nodeSize = wordSize = 0;
+}
+
+const TTNode* TT::getRoot() const {
+   const TTNode* ptrToRoot = root;
+   return ptrToRoot;
 }
 
 int TT::getNodeSize() const {

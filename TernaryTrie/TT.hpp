@@ -56,6 +56,15 @@ public:
    bool find(const string& word) const;
 
    /*
+   * Search for 'subWord' starting from 'startNode'. Updates pointer with
+   * the pointer to the node past 'subword' if found, otherwise null. Returns
+   * a pair of two bool values: first one indicates if the prefix is found and
+   * second one indicates if a valid word in the lexicon has been found
+   */
+   pair<bool, bool> findPrefix(const TTNode* startNode, const string& subWord,
+      TTNode* &nextNode) const;
+
+   /*
    * Inserts 'word' in the trie
    * Returns false if 'word' is already in the trie
    */
@@ -65,6 +74,11 @@ public:
    * Clears the trie from all TTNodes and resets root to null
    */
    void clearTrie();
+
+   /*
+   * Get a pointer to the root of the trie that cannot be used to change it
+   */
+   const TTNode* getRoot() const;
 
    /*
    * Get the nodeSize of the trie (number of TTNodes)
