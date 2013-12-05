@@ -1,6 +1,5 @@
 /*
 * Author: Mehmet KOC
-* PID: A53035914
 * GitID: mehmettkocc
 * Description: the implementation for TT class which represents a ternary trie
 * with nodes from TTNode class
@@ -152,6 +151,7 @@ bool TT::insert(const string& word) {
                return false;
             else {
                curr->end = true;
+			   wordSize++;
                return true;
             }
          }
