@@ -149,6 +149,19 @@ public:
    }
 
 
+   /*
+   * Checks if two trees are identical
+   */
+   static bool isIdentical(BSTNode<Data>* t1, BSTNode<Data>* t2) {
+      //stopping conditions
+      if (t1 == 0 && t2 == 0)
+         return true;
+      if (t1 == 0 ^ t2 == 0)
+         return false;
+      return (t1->data == t2->data) && isIdentical(t1->left, t2->left) &&
+         isIdentical(t1->right, t2->right);
+   }
+
    /** Return the number of items currently in the BST.
    */
    unsigned int size() const {
