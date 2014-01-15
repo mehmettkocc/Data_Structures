@@ -18,24 +18,41 @@ template<typename T>
 class HeapFast {
 private:
    //The array allocated for the heap
-   T allData[maxHeapSize];
+   T allData[maxHeapSize-1];
    //The variable that keeps track of the current size of the heap
    uint currentSize;
 
    /*
-   * Get the index of parent of a node
+   * Get the index of parent of a node. Returns -1 if the node passed is root
    */
-   static uint getPInd(uint ind);
+   int getPInd(uint ind);
 
    /*
-   * Get the index of left child of a node
+   * Get the index of left child of a node. Returns -1 if there is no left child
    */
-   static uint getLCInd(uint ind);
+   int getLCInd(uint ind);
 
    /*
-   * Get the index of right child of a node
+   * Get the ind of right child of a node. Returns -1 if there is no right child
    */
-   static uint getRCInd(uint ind);
+   int getRCInd(uint ind);
+
+   /*
+   * Bubble up the elements at index ind until heap ordering is restored again
+   */
+   void bubbleUp(uint ind);
+
+   /*
+   * Bubble down the elements at index ind until heap ordering is restored again
+   */
+   void bubbleDown(uint ind);
+
+   /*
+   * Return the minimum value of two children and the index for that child.
+   * Returns (-1, -1) if the node has no children
+   */
+   pair<int, int> getMinChild(uint ind);
+
 
    /*--------------------------------------------------------------------------
    * PUBLIC
