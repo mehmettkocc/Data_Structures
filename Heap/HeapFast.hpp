@@ -87,9 +87,9 @@ public:
    T peekMin() const;
 
    /*
-   * Return the min element in the heap with removing
+   * Remove the min element without returning
    */
-   T popMin();
+   void popMin();
 
    /*
    * Return the number of spots left in the heap

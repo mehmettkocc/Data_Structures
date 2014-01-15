@@ -84,9 +84,9 @@ pair<int, int> HeapFast<T>::getMinChild(uint ind) {
 }
 
 
-/*--------------------------------------------------------------------------
+/*-----------------------------------------------------------------------------
 * PUBLIC
---------------------------------------------------------------------------*/
+-----------------------------------------------------------------------------*/
 
 template <typename T>
 uint HeapFast<T>::returnRemaining() const {
@@ -99,6 +99,12 @@ T HeapFast<T>::peekMin() const {
 }
 
 template <typename T>
-T HeapFast<T>::popMin() const {
-   return allData[0];
+void HeapFast<T>::popMin() {
+   if (currentSize == 0) {
+      cout << "Nothing to pop" << endl;
+      return;
+   }
+   allData[0] = allData[currentSize - 1];
+   bubbleDown(0);
+   currentSize--;
 }
