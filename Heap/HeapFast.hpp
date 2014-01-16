@@ -99,9 +99,7 @@ public:
    /*
    * The tester for HeapFast class
    */
-   static void HeapFastTester(){
-
-   }
+   static void __HeapFastTester();
 
    
 };
